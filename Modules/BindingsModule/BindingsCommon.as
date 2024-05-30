@@ -55,7 +55,8 @@ string[][] button_texts =
 		Names::emotewheelsecond
 	},
 	{
-		Names::drillcommand
+		Names::drillcommand,
+		Names::cancelarrowschargingcommand
 	}
 };
 
@@ -101,7 +102,8 @@ string[][] button_file_names =
 		"emote_wheel_two"
 	},
 	{
-		"take_out_drill"
+		"take_out_drill",
+		"cancel_charging"
 	}
 };
 
@@ -109,15 +111,17 @@ string[][] button_file_names =
 string[][] setting_texts =
 {
 	{
-		Names::buildmode,
+		//Names::buildmode,           // rip
 		Names::blockbar,
 		Names::camerasw,
 		Names::bodytilt,
 		Names::headrotating,
+		Names::clusterfuck,
 		Names::drillzoneborders,
 		Names::annoyingnature,
 		Names::annoyingvoicelines,
 		Names::annoyingtags,
+		Names::customdpsounds,
 		Names::switchclasschanginginshop
 	}
 };
@@ -125,15 +129,17 @@ string[][] setting_texts =
 string[][] setting_file_names =
 {
 	{
-		"build_mode",
+		//"build_mode",                 // rip
 		"blockbar_hud",
 		"camera_sway",
 		"body_tilting",
 		"head_rotating",
+		"clusterfuck",
 		"drillzone_borders",
 		"annoying_nature",
 		"annoying_voicelines",
 		"annoying_tags",
+		"custom_death_and_pain_sounds",
 		"disable_class_change_in_shops"
 	}
 };
@@ -141,10 +147,10 @@ string[][] setting_file_names =
 string[][][] setting_options =
 {
 	{
-		{
-			Descriptions::bmoptvan, // 10
-			Descriptions::bmoptlag // 20
-		},
+		//{                              // rip
+		//	Descriptions::bmoptvan, // 10
+		//	Descriptions::bmoptlag // 20
+		//},
 		{
 			Descriptions::universalno, // 10
 			Descriptions::universalyes // 20
@@ -165,6 +171,10 @@ string[][][] setting_options =
 			Descriptions::universalon
 		},
 		{
+			Descriptions::universaloff,       // CLUSTERFUCK
+			Descriptions::universalon
+		},
+		{
 			Descriptions::universaloff,       // DRILLZONE BORDERS
 			Descriptions::universalon
 		},
@@ -181,6 +191,10 @@ string[][][] setting_options =
 			Descriptions::universalon
 		},
 		{
+			Descriptions::universaloff,       // DEATH AND PAIN
+			Descriptions::universalon
+		},
+		{
 			Descriptions::universalno, // 10
 			Descriptions::universalyes // 20
 		}
@@ -190,10 +204,10 @@ string[][][] setting_options =
 string[][][] setting_option_names =
 {
 	{
-		{
-			"vanilla", // 10
-			"lagfriendly" // 20
-		},
+		//{                              // rip
+		//	"vanilla", // 10
+		//	"lagfriendly" // 20
+		//},
 		{
 			"no", // 10    BLOCKBAR
 			"yes" // 20
@@ -214,6 +228,10 @@ string[][][] setting_option_names =
 			"on"
 		},
 		{
+			"off",       // CLUSTERFUCK
+			"on"
+		},
+		{
 			"off",       // DRILLZONE BORDERS
 			"on"
 		},
@@ -227,6 +245,10 @@ string[][][] setting_option_names =
 		},
 		{
 			"off",       // TAGS
+			"on"
+		},
+		{
+			"off",       // DEATH AND PAIN
 			"on"
 		},
 		{

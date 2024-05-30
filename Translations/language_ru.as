@@ -110,6 +110,7 @@ namespace ru
 
 		// Actions
 	n_drillcommand							= "Достать/Убрать дрель",
+	n_cancelarrowschargingcommand			= "Перестать заряжать лук",
 
 		// Settings
 	n_buildmode								= "Режим строительства",
@@ -117,10 +118,12 @@ namespace ru
 	n_camerasw								= "Покачивание камеры (По-умол. 5)",
 	n_bodytilt								= "Иммерсивное поведение тела",
 	n_headrotating							= "Поворот головы в сторону курсора",
+	n_clusterfuck							= "Отображение частиц и кусков",
 	n_drillzoneborders						= "Границы зоны дриллинга",
 	n_annoyingnature						= "Звук от кустов и листьев",
 	n_annoyingvoicelines					= "Звуки войслайнов",
 	n_annoyingtags							= "Звуки меток",
+	n_customdpsounds						= "Кастомные звуки смерти/боли",
 	n_switchclasschanginginshop				= "Выкл. смену класса в магазинах",
 
 		// Other
