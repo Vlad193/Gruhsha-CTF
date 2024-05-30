@@ -44,6 +44,8 @@ void onInit(CBlob@ this)
 	this.getSprite().SetEmitSound("Entities/Characters/Archer/BowPull.ogg");
 	this.addCommandID("shoot arrow");
 	this.addCommandID("pickup arrow");
+	this.addCommandID("cancel arrow charge");
+	this.addCommandID("cancel arrow charge client");
 	this.getShape().getConsts().net_threshold_multiplier = 0.5f;
 
 	this.addCommandID(grapple_sync_cmd);
@@ -114,18 +116,30 @@ void ManageGrapple(CBlob@ this, ArcherInfo@ archer)
 		}
 	}
 
+	if (b_KeyJustPressed("cancel_charging") && charge_state != ArcherParams::stabbing)
+	{
+		if (charge_state != ArcherParams::not_aiming && charge_state != ArcherParams::fired)
+		{
+			charge_state = ArcherParams::readying;
+			archer.charge_time = 0;
+			sprite.SetEmitSoundPaused(true);
+			sprite.PlaySound("PopIn.ogg");
+			this.SendCommand(this.getCommandID("cancel arrow charge"));
+		}
+	}
+
 	if (right_click && charge_state != ArcherParams::stabbing)
 	{
 		// cancel charging
-		if (charge_state != ArcherParams::not_aiming &&
+		/*if (charge_state != ArcherParams::not_aiming &&
 		    charge_state != ArcherParams::fired) // allow grapple right after firing
 		{
 			charge_state = ArcherParams::not_aiming;
 			archer.charge_time = 0;
 			sprite.SetEmitSoundPaused(true);
 			sprite.PlaySound("PopIn.ogg");
-		}
-		else if (canSend(this)) //otherwise grapple
+		}*/
+		if (canSend(this) || isServer()) //otherwise grapple
 		{
 			archer.grappling = true;
 			archer.grapple_id = 0xffff;
@@ -917,6 +931,37 @@ CBlob@ CreateArrow(CBlob@ this, Vec2f arrowPos, Vec2f arrowVel, u8 arrowType)
 
 void onCommand(CBlob@ this, u8 cmd, CBitStream @params)
 {
+	if (cmd == this.getCommandID("cancel arrow charge") && isServer())
+	{
+		ArcherInfo@ archer;
+		if (!this.get("archerInfo", @archer))
+		{
+			return;
+		}
+
+		archer.charge_state = ArcherParams::readying;
+		archer.charge_time = 0;
+		this.SendCommand(this.getCommandID("cancel arrow charge client"));
+	}
+	else if (cmd == this.getCommandID("cancel arrow charge client") && isClient())
+	{
+		ArcherInfo@ archer;
+		if (!this.get("archerInfo", @archer))
+		{
+			return;
+		}
+
+		if (getLocalPlayerBlob() !is null)
+		{
+			if (getLocalPlayerBlob() is this) return;
+		}
+
+		archer.charge_state = ArcherParams::readying;
+		archer.charge_time = 0;
+		this.getSprite().SetEmitSoundPaused(true);
+		this.getSprite().PlaySound("PopIn.ogg");
+	}
+
 	if (cmd == this.getCommandID("shoot arrow"))
 	{
 		Vec2f arrowPos;
