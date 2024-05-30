@@ -8,6 +8,8 @@
 #include "KnockedCommon.as"
 #include "Help.as";
 #include "Requirements.as"
+#include "ShieldHit.as";
+#include "StandardControlsCommon.as";
 
 //attacks limited to the one time per-actor before reset.
 

@@ -8,7 +8,9 @@
 #include "ShieldCommon.as";
 #include "Help.as";
 #include "BombCommon.as";
-#include "RedBarrierCommon.as"
+#include "RedBarrierCommon.as";
+#include "StandardControlsCommon.as";
+#include "BindingsCommon.as"
 
 const int FLETCH_COOLDOWN = 45;
 const int PICKUP_COOLDOWN = 15;
